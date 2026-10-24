@@ -1,0 +1,15 @@
+{
+  "domain": "netztest_at",
+  "name": "Netztest AT",
+  "codeowners": [
+    "@mindestens"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/mindestens/homeassistant-netztest-at",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/mindestens/homeassistant-netztest-at/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "1.0.0"
+}

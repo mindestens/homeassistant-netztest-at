@@ -1,0 +1,113 @@
+{
+  "title": "Netztest AT",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Netztest AT",
+        "description": "Measures with the official RTR client against RTR's servers (Austria). Every test is submitted to RTR and published anonymised as open data (truncated IP, provider, no location). If another speed-test program is running, the test waits until it has finished. Privacy policy and terms of use: {terms_url}",
+        "data": {
+          "schedule_enabled": "Run tests automatically",
+          "plan_download": "Contract download in Mbit/s (optional, for % plan compliance)",
+          "plan_upload": "Contract upload in Mbit/s (optional)",
+          "start_times": "Test times, separated by commas (e.g. 03:00, 19:00, 22:00)",
+          "accept_rtr_terms": "I agree to the RTR-NetTest privacy policy and terms of use",
+          "random_delay": "Random delay up to (minutes, 0 = exactly on time)"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Already configured.",
+      "single_instance_allowed": "Already configured.",
+      "binary_unavailable": "The RTR measurement client could not be provided: {error}"
+    },
+    "error": {
+      "invalid_times": "Times as HH:MM, comma-separated; 1–24 tests per day, at least 30 minutes apart.",
+      "terms_required": "The test cannot be used without agreeing to the RTR terms."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Netztest AT",
+        "data": {
+          "schedule_enabled": "Run tests automatically",
+          "plan_download": "Contract download in Mbit/s (optional, for % plan compliance)",
+          "plan_upload": "Contract upload in Mbit/s (optional)",
+          "start_times": "Test times, separated by commas (e.g. 03:00, 19:00, 22:00)",
+          "random_delay": "Random delay up to (minutes, 0 = exactly on time)",
+          "accept_rtr_terms": "I agree to the RTR-NetTest privacy policy and terms of use"
+        },
+        "description": "Privacy policy and terms of use: {terms_url}"
+      }
+    },
+    "error": {
+      "invalid_times": "Times as HH:MM, comma-separated; 1–24 tests per day, at least 30 minutes apart.",
+      "terms_required": "The test cannot be used without agreeing to the RTR terms."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "download": {
+        "name": "Download"
+      },
+      "upload": {
+        "name": "Upload"
+      },
+      "ping": {
+        "name": "Ping"
+      },
+      "ping_min": {
+        "name": "Ping min"
+      },
+      "ping_max": {
+        "name": "Ping max"
+      },
+      "jitter": {
+        "name": "Jitter"
+      },
+      "download_plan_compliance": {
+        "name": "Download plan compliance"
+      },
+      "upload_plan_compliance": {
+        "name": "Upload plan compliance"
+      },
+      "server": {
+        "name": "Server"
+      },
+      "provider": {
+        "name": "Provider"
+      },
+      "result_url": {
+        "name": "Result URL"
+      },
+      "last_test": {
+        "name": "Last test"
+      }
+    },
+    "button": {
+      "run_test": {
+        "name": "Run test"
+      }
+    },
+    "binary_sensor": {
+      "running": {
+        "name": "Test running"
+      },
+      "server_abroad": {
+        "name": "Server outside Austria"
+      }
+    }
+  },
+  "services": {
+    "run_test": {
+      "name": "Run test",
+      "description": "Runs an RTR test now."
+    }
+  },
+  "issues": {
+    "foreign_server": {
+      "title": "Netztest AT: server outside Austria",
+      "description": "For the last test RTR assigned the test server **{server}**, which was not recognised as an Austrian server. The result is not comparable with tests against Vienna. This notice disappears once an Austrian server is used again."
+    }
+  }
+}

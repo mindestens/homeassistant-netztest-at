@@ -1,0 +1,54 @@
+name: Release assets
+
+# Builds the RTR client for every published release and attaches it with checksums.
+# The integration downloads the asset matching its own version and verifies the SHA-256.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+env:
+  # Official RTR-Netztest client source (tag v2.5.4).
+  RTR_CLIENT_COMMIT: 5ea2512d34f6fef932907e73eed3acc7f7078900
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build static rmbt-client
+        run: |
+          mkdir -p dist
+          docker run --rm -v "$PWD":/w alpine:3.24 \
+            sh /w/.github/scripts/build-rmbt-client.sh "$RTR_CLIENT_COMMIT" "/w/dist/rmbt-client-linux-${{ matrix.arch }}"
+      - name: Smoke test on Debian (glibc)
+        run: docker run --rm -v "$PWD/dist":/d:ro debian:12-slim /d/rmbt-client-linux-${{ matrix.arch }} --help
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rmbt-client-${{ matrix.arch }}
+          path: dist/rmbt-client-linux-${{ matrix.arch }}
+
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Checksums
+        working-directory: dist
+        run: sha256sum rmbt-client-linux-* > SHA256SUMS && cat SHA256SUMS
+      - name: Attach to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" dist/* --repo "${{ github.repository }}" --clobber

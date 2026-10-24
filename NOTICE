@@ -1,0 +1,17 @@
+Netztest AT – unofficial Home Assistant integration for the RTR-Netztest
+Copyright 2026 Min Destens
+
+This project is not affiliated with, endorsed or reviewed by the
+Rundfunk und Telekom Regulierungs-GmbH (RTR-GmbH).
+
+The release assets of this repository contain the RTR-Netztest measurement
+client (Open-RMBT, "rmbt-client"), built unmodified from
+https://github.com/rtr-nettest/open-rmbt-client-cli (directory clientC).
+Copyright RTR-GmbH, licensed under the Apache License, Version 2.0.
+
+Measurement results published by the RTR-GmbH as open data are licensed
+under Creative Commons Attribution 4.0 (CC BY 4.0), source: RTR-Netztest
+(https://www.netztest.at/de/Opendata).
+
+The RTR-Netztest logo and wordmark are not part of the open source release
+and are not used by this project.

@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+# The RTR client is downloaded at setup from the GitHub release, never committed.
+custom_components/netztest_at/bin/

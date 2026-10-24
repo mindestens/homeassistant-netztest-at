@@ -1,0 +1,113 @@
+{
+  "title": "Netztest AT",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Netztest AT",
+        "description": "Misst mit dem offiziellen RTR-Client gegen die Server der RTR (Österreich). Jeder Test wird an RTR übermittelt und anonymisiert als Open Data veröffentlicht (gekürzte IP, Provider, keine Position). Läuft gerade ein anderes Speedtest-Programm, wartet der Test, bis es fertig ist. Datenschutzerklärung und Nutzungsbedingungen: {terms_url}",
+        "data": {
+          "schedule_enabled": "Automatisch testen",
+          "plan_download": "Vertrag Download in Mbit/s (optional, für % Vertragserfüllung)",
+          "plan_upload": "Vertrag Upload in Mbit/s (optional)",
+          "start_times": "Uhrzeiten der Tests, mit Komma getrennt (z. B. 03:00, 19:00, 22:00)",
+          "accept_rtr_terms": "Ich stimme der Datenschutzerklärung und den Nutzungsbedingungen des RTR-Netztests zu",
+          "random_delay": "Zufällige Verzögerung bis zu (Minuten, 0 = genau zur Uhrzeit)"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Bereits eingerichtet.",
+      "single_instance_allowed": "Bereits eingerichtet.",
+      "binary_unavailable": "Das RTR-Messprogramm konnte nicht bereitgestellt werden: {error}"
+    },
+    "error": {
+      "invalid_times": "Uhrzeiten als HH:MM, mit Komma getrennt; 1–24 Tests pro Tag, mindestens 30 Minuten Abstand.",
+      "terms_required": "Ohne Zustimmung zu den RTR-Bedingungen kann der Test nicht verwendet werden."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Netztest AT",
+        "data": {
+          "schedule_enabled": "Automatisch testen",
+          "plan_download": "Vertrag Download in Mbit/s (optional, für % Vertragserfüllung)",
+          "plan_upload": "Vertrag Upload in Mbit/s (optional)",
+          "start_times": "Uhrzeiten der Tests, mit Komma getrennt (z. B. 03:00, 19:00, 22:00)",
+          "random_delay": "Zufällige Verzögerung bis zu (Minuten, 0 = genau zur Uhrzeit)",
+          "accept_rtr_terms": "Ich stimme der Datenschutzerklärung und den Nutzungsbedingungen des RTR-Netztests zu"
+        },
+        "description": "Datenschutzerklärung und Nutzungsbedingungen: {terms_url}"
+      }
+    },
+    "error": {
+      "invalid_times": "Uhrzeiten als HH:MM, mit Komma getrennt; 1–24 Tests pro Tag, mindestens 30 Minuten Abstand.",
+      "terms_required": "Ohne Zustimmung zu den RTR-Bedingungen kann der Test nicht verwendet werden."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "download": {
+        "name": "Download"
+      },
+      "upload": {
+        "name": "Upload"
+      },
+      "ping": {
+        "name": "Ping"
+      },
+      "ping_min": {
+        "name": "Ping min"
+      },
+      "ping_max": {
+        "name": "Ping max"
+      },
+      "jitter": {
+        "name": "Jitter"
+      },
+      "download_plan_compliance": {
+        "name": "Download Vertragserfüllung"
+      },
+      "upload_plan_compliance": {
+        "name": "Upload Vertragserfüllung"
+      },
+      "server": {
+        "name": "Server"
+      },
+      "provider": {
+        "name": "Provider"
+      },
+      "result_url": {
+        "name": "Ergebnis-Link"
+      },
+      "last_test": {
+        "name": "Letzter Test"
+      }
+    },
+    "button": {
+      "run_test": {
+        "name": "Test starten"
+      }
+    },
+    "binary_sensor": {
+      "running": {
+        "name": "Test läuft"
+      },
+      "server_abroad": {
+        "name": "Server außerhalb Österreichs"
+      }
+    }
+  },
+  "services": {
+    "run_test": {
+      "name": "Test starten",
+      "description": "Startet sofort einen RTR-Netztest."
+    }
+  },
+  "issues": {
+    "foreign_server": {
+      "title": "Netztest AT: Server außerhalb Österreichs",
+      "description": "Beim letzten Test hat die RTR den Testserver **{server}** zugeteilt, der nicht als österreichischer Server erkannt wurde. Das Ergebnis ist dann nicht mit Tests gegen Wien vergleichbar. Der Hinweis verschwindet, sobald wieder ein Server in Österreich verwendet wird."
+    }
+  }
+}
